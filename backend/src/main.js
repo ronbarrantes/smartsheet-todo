@@ -1,1 +1,3 @@
-console.log('hello');
+'use strict';
+
+require('./lib/server.js').start();

@@ -24,12 +24,12 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.0",
-    "expres": "0.0.5",
+    "express": "^4.16.2",
     "fs-extra": "^5.0.0",
     "http-errors": "^1.6.2",
     "jsonwebtoken": "^8.1.1",
-    "mongoose": "^5.0.6",
     "morgan": "^1.9.0",
+    "smartsheet": "^1.0.4",
     "superagent": "^3.8.2"
   },
   "devDependencies": {
