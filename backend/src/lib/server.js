@@ -12,13 +12,11 @@ let server = null;
 const app = express();
 const production = process.env.NODE_ENV === 'production';
 
-
 app.use(jsonParser);
 app.use(morgan(production ? 'combined' : 'dev'));
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 
 // routes
-
 app.use(smartsheetRouter);
 
 // 404 routes
