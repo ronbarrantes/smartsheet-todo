@@ -1,7 +1,6 @@
 'use strict';
 
 const { Router } = require('express');
-const smartsheetToken = require('../lib/smartsheet-id.js');
 
 // I might delete this - I dont know if I want to create another client
 const client = require('smartsheet');
@@ -9,10 +8,12 @@ const level = process.env.NODE_ENV === 'production' ? null : 'info';
 const smartsheet = client.createClient({ accessToken: process.env.SMARTSHEET_ACCESS_TOKEN, logLevel: level });
 
 const smartsheetID = module.exports = new Router();
-smartsheetID.get('/hello', smartsheetToken, (req, res, next) => {
-  const { id } = req;
+smartsheetID.get('/hello', (req, res, next) => {
 
-  smartsheet.sheets.getSheet({ id })
+  const { sheetId } = req;
+  console.log('ID --> ', sheetId);
+
+  smartsheet.sheets.getSheet({ id: sheetId })
     .then(result => {
       res.json(result.columns);
     })
