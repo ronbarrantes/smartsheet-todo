@@ -5,19 +5,21 @@ require('dotenv').config();
 const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
-const client = require('smartsheet');
 const jsonParser = require('body-parser').json();
+const smartsheetRouter = require('../route/smartsheet-router.js');
 
 let server = null;
 const app = express();
 const production = process.env.NODE_ENV === 'production';
-const ss = client.createClient({ accessToken: process.env.SMARTSHEET_ACCESS_TOKEN, logLevel: 'info' });
+
 
 app.use(jsonParser);
 app.use(morgan(production ? 'combined' : 'dev'));
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 
 // routes
+
+app.use(smartsheetRouter);
 
 // 404 routes
 app.all('*', (req, res) => res.sendStatus(404));
