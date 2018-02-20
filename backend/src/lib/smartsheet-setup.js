@@ -13,12 +13,8 @@ let initialSetup = {
     name: sheetAppName,
     columns: [
       {
-        title: 'Primary Column',
-        primary: true,
-        type: 'TEXT_NUMBER',
-      },
-      {
         title: 'ToDo',
+        primary: true,
         type: 'TEXT_NUMBER',
       },
       {
