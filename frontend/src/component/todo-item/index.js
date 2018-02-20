@@ -16,12 +16,11 @@ class ToDoItem extends React.Component {
       <div className='todo-item'>
         <div>
           <p>ToDo: {todoName.value} </p>
-          <p>Status</p>
-          <p>Due Date</p>
-          <p>Category</p>
+          <p>Status: {todoStatus.value}</p>
+          <p>Due Date: {todoDueDate.value}</p>
+          <p>Category: {todoCategory.value}</p>
         </div>
       </div>
-
     );
   }
 }

@@ -16,13 +16,9 @@ class ToDo extends React.Component {
 
   render() {
     let { todos } = this.props;
-    // console.log('TODO ITEMS -->', this.props.todos);
-
-    // todos.map(item => console.log(item.id));
     return (
       <div className='todo'>
         <h1>ToDo</h1>
-
         {todos.map(item =>
           <ToDoItem
             key={item.id}

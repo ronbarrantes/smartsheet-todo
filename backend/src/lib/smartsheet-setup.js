@@ -47,7 +47,6 @@ smartsheet.sheets.getSheet()
       })
       .catch(err => console.log(err));
     return newSheet;
-
   })
   .then(res => {
     sheetId = res.id;
