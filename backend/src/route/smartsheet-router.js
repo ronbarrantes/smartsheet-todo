@@ -7,15 +7,21 @@ const client = require('smartsheet');
 const level = process.env.NODE_ENV === 'production' ? null : 'info';
 const smartsheet = client.createClient({ accessToken: process.env.SMARTSHEET_ACCESS_TOKEN, logLevel: level });
 
-const smartsheetID = module.exports = new Router();
-smartsheetID.get('/hello', (req, res, next) => {
+const smartsheetRoute = module.exports = new Router();
+
+smartsheetRoute.get('/hello', (req, res, next) => {
 
   const { sheetId } = req;
-  console.log('ID --> ', sheetId);
+  // console.log('ID --> ', sheetId);
 
-  smartsheet.sheets.getSheet({ id: sheetId })
-    .then(result => {
-      res.json(result.columns);
-    })
-    .catch(next);
+
+
+  // smartsheet.sheets.getSheet({ id: sheetId })
+  //   .then(result => {
+  //     res.json(result.columns);
+  //   })
+  //   .catch(next);
+
+  res.json({ hello: sheetId });
+
 });
