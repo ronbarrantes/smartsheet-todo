@@ -1,13 +1,12 @@
 'use strict';
 const client = require('smartsheet');
-const faker = require('faker');
 
 const level = process.env.NODE_ENV === 'production' ? null : 'info';
 const smartsheet = client.createClient({ accessToken: process.env.SMARTSHEET_ACCESS_TOKEN, logLevel: level });
 
 let sheetId;
 
-let sheetAppName = process.env.SHEET_APP_NAME + faker.lorem.word(11);
+let sheetAppName = process.env.SHEET_APP_NAME;
 
 let initialSetup = {
   body: {
