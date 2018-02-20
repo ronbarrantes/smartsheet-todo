@@ -1,6 +1,7 @@
 'use strict';
 
 const { Router } = require('express');
+const httpErrors = require('http-errors');
 
 // I might delete this - I dont know if I want to create another client
 const client = require('smartsheet');
@@ -23,17 +24,22 @@ smartsheetRouter.get('/sheets', (req, res, next) => {
     .catch(next);
 });
 
+smartsheetRouter.get('/rows', (req, res, next) => {
+  const { sheetId } = req;
+  smartsheet.sheets.getSheet({ id: sheetId })
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(next);
+});
+
 smartsheetRouter.get('/rows/:id', (req, res, next) => {
   const { sheetId } = req;
-
   smartsheet.sheets.getRow({ sheetId, rowId: req.params.id })
     .then(result => {
       res.json(result);
     })
     .catch(next);
-
-  // res.json({ sheetId, rowId: req.params.id });
-
 });
 
 
