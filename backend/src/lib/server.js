@@ -6,8 +6,8 @@ const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 const jsonParser = require('body-parser').json();
-const smartsheetSetup = require('./smartsheet-setup.js');
 const smartsheetRouter = require('../route/smartsheet-router.js');
+const smartsheetMiddleware = require('./smartsheet-middleware.js');
 
 let server = null;
 const app = express();
@@ -17,8 +17,7 @@ app.use(jsonParser);
 app.use(morgan(production ? 'combined' : 'dev'));
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 
-
-app.use(smartsheetSetup);
+app.use(smartsheetMiddleware);
 
 // routes
 app.use(smartsheetRouter);
