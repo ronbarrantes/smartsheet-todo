@@ -17,7 +17,7 @@ module.exports = new Router()
       .catch(next);
   })
 
-  .get('/rows', (req, res, next) => {
+  .get('/todos', (req, res, next) => {
     const { sheetId } = req;
     smartsheet.sheets.getSheet({ id: sheetId })
       .then(result => {
@@ -26,7 +26,7 @@ module.exports = new Router()
       .catch(next);
   })
 
-  .get('/rows/:id', (req, res, next) => {
+  .get('/todos/:id', (req, res, next) => {
     const { sheetId } = req;
     smartsheet.sheets.getRow({ sheetId, rowId: req.params.id })
       .then(result => {
@@ -35,7 +35,7 @@ module.exports = new Router()
       .catch(next);
   })
 
-  .post('/rows', (req, res, next) => {
+  .post('/todos', (req, res, next) => {
     const { sheetId } = req;
 
     let row = {
@@ -62,7 +62,7 @@ module.exports = new Router()
       .catch(next);
   })
 
-  .delete('/rows/:id', (req, res, next) => {
+  .delete('/todos/:id', (req, res, next) => {
     const { sheetId } = req;
     smartsheet.sheets.deleteRow({ sheetId, rowId: req.params.id })
       .then(result => {

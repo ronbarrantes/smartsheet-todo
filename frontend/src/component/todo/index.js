@@ -1,6 +1,7 @@
 import React from 'react';
-import superagent from 'superagent';
-// import * as client from 'smartsheet';
+import { connect } from 'react-redux';
+// import todoItems = 
+import * as todoList from '../../action/todo.js';
 
 class ToDo extends React.Component {
   constructor(props) {
@@ -8,18 +9,19 @@ class ToDo extends React.Component {
     this.handleLoad = this.handleLoad.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchToDos()
+      .catch(console.error);
+  }
+
+
   handleLoad() {
-    superagent.get(`${__API_URL__}/rows`)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.error(err));
+    console.log('hello');
   }
 
   render() {
-
     this.handleLoad();
-
+    console.log(this.props);
     return (
       <div>
         <p>Hello</p>
@@ -28,4 +30,13 @@ class ToDo extends React.Component {
   }
 }
 
-export default ToDo;
+let mapStateToProps = (state) => ({
+  todoItem: state.todo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchToDos: () => dispatch(todoList.fetch()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDo);
+
