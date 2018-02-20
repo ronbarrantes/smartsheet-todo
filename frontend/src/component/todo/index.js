@@ -9,18 +9,11 @@ class ToDo extends React.Component {
   }
 
   handleLoad() {
-
-
-
-
-    superagent.get(__API_URL__)
-      .withCredentials()
-      .set('Authorization', `Bearer ${__ACCESS_TOKEN__}`)
+    superagent.get(`${__API_URL__}/rows`)
       .then(res => {
-        console.log('SOMETHING IS HAPPENING', res);
+        console.log(res);
       })
-      .catch(console.error);
-
+      .catch(err => console.error(err));
   }
 
   render() {
@@ -29,8 +22,7 @@ class ToDo extends React.Component {
 
     return (
       <div>
-        <p>Hello  {__ACCESS_TOKEN__}</p>
-
+        <p>Hello</p>
       </div>
     );
   }

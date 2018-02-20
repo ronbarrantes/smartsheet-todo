@@ -24,10 +24,6 @@ module.exports = {
     new ExtractPlugin('bundle.[hash].css'),
     new DefinePlugin({
       __API_URL__: JSON.stringify(process.env.API_URL),
-      __ACCESS_TOKEN__: JSON.stringify(process.env.ACCESS_TOKEN),
-      __SHEET_ID__: JSON.stringify(process.env.SHEET_ID),
-      __APP_SECRET__: JSON.stringify(process.env.APP_SECRET),
-      __APP_CLIENT__: JSON.stringify(process.env.APP_CLIENT),
     }),
   ],
   module: {
