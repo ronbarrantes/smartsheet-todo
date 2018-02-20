@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import todoItems = 
+
+import ToDoItem from '../todo-item';
 import * as todoList from '../../action/todo.js';
 
 class ToDo extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLoad = this.handleLoad.bind(this);
   }
 
   componentDidMount() {
@@ -14,24 +14,27 @@ class ToDo extends React.Component {
       .catch(console.error);
   }
 
-
-  handleLoad() {
-    console.log('hello');
-  }
-
   render() {
-    this.handleLoad();
-    console.log(this.props);
+    let { todos } = this.props;
+    // console.log('TODO ITEMS -->', this.props.todos);
+
+    // todos.map(item => console.log(item.id));
     return (
-      <div>
-        <p>Hello</p>
+      <div className='todo'>
+        <h1>ToDo</h1>
+
+        {todos.map(item =>
+          <ToDoItem
+            key={item.id}
+            todo={item}
+          />)}
       </div>
     );
   }
 }
 
 let mapStateToProps = (state) => ({
-  todoItem: state.todo,
+  todos: state.todos,
 });
 
 const mapDispatchToProps = (dispatch) => ({
