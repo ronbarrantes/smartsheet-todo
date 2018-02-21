@@ -22,8 +22,16 @@
   "rules": {
     "no-console": "off",
     "indent": [ "error", 2 ],
+    "semi": [ "error", "always" ],
     "quotes": ["error", "single", { "allowTemplateLiterals": true }],
     "comma-dangle": ["error", "always-multiline"],
-    "semi": [ "error", "always" ]
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ]
   }
 }

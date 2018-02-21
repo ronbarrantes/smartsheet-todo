@@ -2,39 +2,49 @@
 
 const { Router } = require('express');
 
-// I might delete this - I dont know if I want to create another client
 const client = require('smartsheet');
 const level = process.env.NODE_ENV === 'production' ? null : 'info';
 const smartsheet = client.createClient({ accessToken: process.env.SMARTSHEET_ACCESS_TOKEN, logLevel: level });
 
-const smartsheetRouter = module.exports = new Router();
+module.exports = new Router()
 
-smartsheetRouter.get('/hello', (req, res) => {
-  const { sheetId } = req;
-  res.json({ hello: sheetId });
-});
-
-smartsheetRouter.get('/sheets', (req, res, next) => {
-  const { sheetId } = req;
-  smartsheet.sheets.getSheet({ id: sheetId })
-    .then(result => {
-      res.json(result);
-    })
-    .catch(next);
-});
-
-smartsheetRouter.get('/rows/:id', (req, res, next) => {
-  const { sheetId } = req;
-
-  smartsheet.sheets.getRow({ sheetId, rowId: req.params.id })
-    .then(result => {
-      res.json(result);
-    })
-    .catch(next);
-
-  // res.json({ sheetId, rowId: req.params.id });
-
-});
-
-
-
+  // GETS ALL THE TODOS
+  .get('/todos', (req, res, next) => {
+    smartsheet.sheets.getSheet({ id: req.sheetId })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(next);
+  })
+  // GETS INDIVIDUAL TODO
+  .get('/todos/:id', (req, res, next) => {
+    smartsheet.sheets.getRow({ sheetId: req.sheetId, rowId: req.params.id })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(next);
+  })
+  // POST A TODO
+  .post('/todos', (req, res, next) => {
+    smartsheet.sheets.addRows({ sheetId: req.sheetId, body: req.body })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(next);
+  })
+  // UPDATES A TODO
+  .put('/todos', (req, res, next) => {
+    smartsheet.sheets.updateRow({ sheetId: req.sheetId, body: req.body })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(next);
+  })
+  // DELETES A TODO
+  .delete('/todos/:id', (req, res, next) => {
+    smartsheet.sheets.deleteRow({ sheetId: req.sheetId, rowId: req.params.id })
+      .then(result => {
+        res.json(result);
+      })
+      .catch(next);
+  });

@@ -11,7 +11,6 @@ For more information checkout SmartSheet.com
 **You must have:**
 
 - [Node.js](https://nodejs.org/en/download/)
-- [MongoDB](https://www.mongodb.com/download-center)
 
 ## How to use
 
@@ -19,14 +18,14 @@ There is a **frontend** and a **backend** directory, they both will need to be c
 
 **How to configure:**
 
-1. Each of the directories will contain an *.env.sample* file. All the environment variables must be configured before running the app. 
+1. Each of the directories will contain an *.env.sample* file. The environment variables must be configured before running the app. 
 
 2. After configuring the *.env.sample* rename the sample file to *.env*
 (Always keep your environment variables secure)
 
 3. Run the command `npm i` to install the dependencies in both directories
 
-4. In the **backend** directory, first run `npm run dbon` to start the database, then `npm start` to start node. Backend will run on *locahost:3000/*
+4. In the **backend** directory, first run `npm start` to start the node server. It will run on *locahost:3000/*
 
 5. In the **frontend** directory, run `npm run watch` to run the frontend
 

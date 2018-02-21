@@ -3,6 +3,18 @@
 module.exports = (err, req, res, next) => {
   console.error(err);
 
+  if (err.statusCode === 404)
+    return res.sendStatus(404);
+
+  if (err.statusCode === 400)
+    return res.sendStatus(400);
+
+  if (err.statusCode === 401)
+    return res.sendStatus(401);
+
+  if (err.statusCode === 409)
+    return res.sendStatus(409);
+
   if (err.status)
     return res.sendStatus(err.status);
 
