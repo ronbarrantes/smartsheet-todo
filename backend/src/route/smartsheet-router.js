@@ -12,7 +12,7 @@ module.exports = new Router()
   .get('/todos', (req, res, next) => {
     smartsheet.sheets.getSheet({ id: req.sheetId })
       .then(result => {
-        res.json(result.rows);
+        res.json(result);
       })
       .catch(next);
   })

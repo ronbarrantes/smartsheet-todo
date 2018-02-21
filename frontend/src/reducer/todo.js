@@ -1,4 +1,4 @@
-let emptyState = [];
+let emptyState = {};
 
 export default (state = emptyState, { type, payload }) => {
   switch (type) {

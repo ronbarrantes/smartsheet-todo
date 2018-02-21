@@ -16,10 +16,12 @@ class ToDo extends React.Component {
 
   render() {
     let { todos } = this.props;
+    let rows = this.props.todos.rows ? this.props.todos.rows : [];
+
     return (
       <div className='todo'>
         <h1>ToDo</h1>
-        {todos.map(item =>
+        {rows.map(item =>
           <ToDoItem
             key={item.id}
             todo={item}
